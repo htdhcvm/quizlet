@@ -1,0 +1,25 @@
+include mixin/head
+include mixin/footer
+
+
+<!DOCTYPE html>
+html(lang="en")
+    head
+        +head(dataHead)        
+    body    
+        div(class="wrapper-main")
+            
+            nav(class="haed")
+                include includes/header.pug
+
+            div( class="menu")
+                ul
+                    li 
+                        a Главная
+                    li 
+                        a Модули
+            div(class="content")
+
+            div(id="wrapper-modal")
+
+        +footer(dataHead.js)
