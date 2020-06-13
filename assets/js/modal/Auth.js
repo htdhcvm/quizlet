@@ -7,6 +7,7 @@ const Auth = (title) => {
 
         this.name = "authorization_modal";
 
+        this.wrapper = "#wrapper-modal .modalEnter";
 
         this.DOMLayout = `
             <div class="modalEnter">
@@ -16,11 +17,11 @@ const Auth = (title) => {
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Логин</label>
-                        <input type="text" placeholder="Логин">
+                        <input type="text" placeholder="Логин" id="login">
                     </div>
                     <div class="form-group">
                         <label>Пароль</label>
-                        <input type="password" placeholder="Пароль">
+                        <input type="password" placeholder="Пароль" id="password">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -32,11 +33,34 @@ const Auth = (title) => {
                 </div>
             </div>
         `;
-    }
 
 
-    Authorization.prototype.authorization = () => {
-        console.log("authorization");
+       
+
+        this.authorization = () => {
+            this.fillDOM(this.DOMLinks.auth);
+
+            console.log(this.DOMLinks.auth);
+
+            fetch("/authorization", {
+                method : "POST",
+                headers : {
+                    "Content-Type" : "application/json"
+                },
+
+                body : JSON.stringify({
+                    values : {
+                        login : this.DOMLinks.auth["#wrapper-modal .modalEnter .modal-body #login"],
+                        password : this.DOMLinks.auth["#wrapper-modal .modalEnter .modal-body #password"]
+                    }
+                })
+            }).then( response => {
+                return response.json();
+            }).then( data => {
+                this.showMessage(data.status, data.text);
+            })
+
+        }
     }
 
 

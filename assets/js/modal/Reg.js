@@ -6,6 +6,8 @@ const Reg = (title) => {
 
         this.name = "registration_modal";
 
+        this.wrapper = "#wrapper-modal .modalRegistration";
+
         this.DOMLayout = `
             <div class="modalRegistration">
                 <div class="modal-head"> 
@@ -30,29 +32,11 @@ const Reg = (title) => {
             </div>
         `;
 
-
-        this.message = () => {
-            console.log("mess")
-        }
-
-
-
-        this.DOMCollectionValues = {
-            ["#wrapper-modal .modalRegistration .modal-body #login"] : undefined,
-            ["#wrapper-modal .modalRegistration .modal-body #password"] : undefined
-        }
-    
-        this.fillDOM = () => {
-            for( let DOMItem in this.DOMCollectionValues ) {
-                this.DOMCollectionValues[DOMItem] = document.querySelector(DOMItem).value;
-            }
-        }
     
         this.registration = () => {
-            this.fillDOM();
-            console.log(this.DOMCollectionValues);
-    
-            if( this.DOMCollectionValues["#wrapper-modal .modalRegistration .modal-body #login"] !== "" && this.DOMCollectionValues["#wrapper-modal .modalRegistration .modal-body #password"] !== "") {
+            this.fillDOM(this.DOMLinks.reg);
+
+            if( this.DOMLinks.reg["#wrapper-modal .modalRegistration .modal-body #login"] !== "" && this.DOMLinks.reg["#wrapper-modal .modalRegistration .modal-body #password"] !== "") {
                 fetch("/registration", {
                     method : "POST",
                     headers : {
@@ -60,14 +44,14 @@ const Reg = (title) => {
                     }, 
                     body : JSON.stringify({
                         values : {
-                            login : this.DOMCollectionValues["#wrapper-modal .modalRegistration .modal-body #login"],
-                            password : this.DOMCollectionValues["#wrapper-modal .modalRegistration .modal-body #password"]
+                            login : this.DOMLinks.reg["#wrapper-modal .modalRegistration .modal-body #login"],
+                            password : this.DOMLinks.reg["#wrapper-modal .modalRegistration .modal-body #password"]
                         }
                     })
                 }).then( response => {
                     return response.json();
                 }).then( data => {
-                    
+                    this.showMessage(data.status, data.text);
                 })
             } else {
                 this.showMessage(false, "Заполните поля");

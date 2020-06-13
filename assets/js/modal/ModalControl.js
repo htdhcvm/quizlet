@@ -5,8 +5,26 @@ const ModalCont = () => {
         this.state = false;
 
         this.DOMLinks = {
-            wrapper_modal : document.querySelector("#wrapper-modal")
+            wrapper_modal : document.querySelector("#wrapper-modal"),
+            auth : {
+                ["#wrapper-modal .modalEnter .modal-body #login"] : undefined,
+                ["#wrapper-modal .modalEnter .modal-body #password"] : undefined
+            },
+
+            reg : {
+                ["#wrapper-modal .modalRegistration .modal-body #login"] : undefined,
+                ["#wrapper-modal .modalRegistration .modal-body #password"] : undefined
+            }
         }
+
+
+        this.fillDOM = ( iterableObj ) => {
+            for( let DOMItem in iterableObj ) {
+                iterableObj[DOMItem] = document.querySelector(DOMItem).value;
+            }
+        }
+
+
 
         this.getLayout = () => {
             return this.DOMLayout;
@@ -41,7 +59,7 @@ const ModalCont = () => {
         }
 
         this.addMessageDom = (markup) => {
-            document.querySelector("#wrapper-modal .modalRegistration").innerHTML += markup;
+            document.querySelector(this.wrapper).innerHTML += markup;
         }
 
         this.showMessage = (status, text) => {

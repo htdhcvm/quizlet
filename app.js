@@ -50,7 +50,6 @@ app.post("/registration", (req, res) => {
             return hash;
         },
         (err) => {
-            console.log(err)
             res.send({
                 text : "Что-то не так",
                 status : false
@@ -63,7 +62,6 @@ app.post("/registration", (req, res) => {
                 hash : hash
             }).then( 
                 ( status ) => {
-                    console.log(status);
                     res.send({
                         text : "Регистрация прошла успешно",
                         status : true
@@ -80,6 +78,35 @@ app.post("/registration", (req, res) => {
         })
     })
 });
+
+app.post("/authorization", (req, res) => {
+    let { login, password } = req.body.values;
+
+    User.getOnLogin(login)
+        .then(
+            ( users ) => {
+                users.forEach( item => {
+                    bcrypt.compare(password, item.Password, function(err, result) {
+                        if (err) console.log(err);
+                        
+                        if ( result ) {
+                            console.log(item.login, item.Password)
+                            res.send({
+                                text : "Авторизация прошла успешно",
+                                status : true
+                            })
+                        }
+                    });
+                })
+            },
+            (err)=> {
+                console.log(err);
+            }
+        )
+
+})
+
+
 
 app.listen(3000, () => {
     console.log(`Server was started on 3000 port`);
