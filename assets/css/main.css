@@ -160,3 +160,89 @@ li {
     right: 0;
     top: 10%;
 }
+
+
+
+#wrapper-modal .modalRegistration {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: 10%;
+    width: 350px;
+    padding: 30px 25px 30px 25px;
+    border-radius: 4px;
+    margin: 0 auto;
+    background-color: white;
+}
+
+
+
+
+#wrapper-modal .modalRegistration .form-group label {
+    display: block;
+    margin: 10px 0px 10px 0px;
+}
+
+#wrapper-modal .modalRegistration .form-group input{
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    height: 35px;
+    border-radius: 4px;
+    background-color: #f4f5f7;
+    border: none;
+    height: 45px;
+    font-size: 16px;
+    padding: 10px;
+}
+
+#wrapper-modal .modalRegistration .title {
+    margin: 0px 0px 20px 0px;
+}
+
+#wrapper-modal .modalRegistration .btnEnter {
+    background-color: #165ecc;
+    font-weight: 700;
+    font-size: 14px;
+    border: none;
+    color: white;
+    padding: 10px 0px 10px 0px;
+
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#wrapper-modal .modalRegistration .registration {
+    cursor: pointer;
+}
+#wrapper-modal .modalRegistration .close {
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+#wrapper-modal .modalRegistration .manipulation {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+
+.wrapper-message .success {
+    background-color: seagreen;
+    color: white;
+    border-radius: 4px;
+    text-align: center;
+    padding: 10px;
+}
+
+.wrapper-message .error {
+    background-color: crimson;
+    color: white;
+    border-radius: 4px;
+    text-align: center;
+    padding: 10px;
+}   

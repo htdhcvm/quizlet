@@ -39,6 +39,38 @@ const ModalCont = () => {
                 modal.state = false;
             }
         }
+
+        this.addMessageDom = (markup) => {
+            document.querySelector("#wrapper-modal .modalRegistration").innerHTML += markup;
+        }
+
+        this.showMessage = (status, text) => {
+            if(status) {
+                this.addMessageDom(`
+                    <div class="wrapper-message">
+                        <div class="success">
+                            ${text}
+                        </div>
+                    </div>
+                `);
+                setTimeout( ()=> {
+                    document.querySelector("#wrapper-modal .wrapper-message").style.display = "none";
+                    this.close();
+                }, 2000);
+            } else {
+                this.addMessageDom(`
+                    <div class="wrapper-message">
+                        <div class="error">
+                            ${text}
+                        </div>
+                    </div>
+                `);
+                setTimeout( ()=> {
+                    document.querySelector("#wrapper-modal .wrapper-message").style.display = "none";
+                }, 2000);
+            }
+            
+        }
     }
 
     ModalControl.prototype.collectionModal = new Set();
