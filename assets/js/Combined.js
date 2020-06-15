@@ -31,13 +31,12 @@ const Combined = () => {
                     createModal.ModalController.closePersonality();
                     break;
             }
-            console.log()
         });
     }
 
     return {
         initModal() {
-            _handlerEnterReg();
+            if(DOMLinks.signInRegistration) _handlerEnterReg();
             _handlerModalWrapper();
         }
     }

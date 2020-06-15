@@ -11,15 +11,15 @@ html(lang="en")
             
             nav(class="haed")
                 include includes/header.pug
-
-            div( class="menu")
-                ul
-                    li 
-                        a Главная
-                    li 
-                        a Модули
-            div(class="content")
-                
+            if dataHead.data
+                div( class="menu")
+                    ul
+                        li 
+                            a Главная
+                        li 
+                            a Модули
+                div(class="content")
+                    
             div(id="wrapper-modal")
 
         +footer(dataHead.js)

@@ -24,8 +24,6 @@ const ModalCont = () => {
             }
         }
 
-
-
         this.getLayout = () => {
             return this.DOMLayout;
         }
@@ -71,10 +69,15 @@ const ModalCont = () => {
                         </div>
                     </div>
                 `);
-                setTimeout( ()=> {
-                    document.querySelector("#wrapper-modal .wrapper-message").style.display = "none";
-                    this.close();
-                }, 2000);
+                new Promise( resolve => {
+                    setTimeout( ()=> {
+                        document.querySelector("#wrapper-modal .wrapper-message").style.display = "none";
+                        this.close();
+                        resolve();
+                    }, 2000);
+                }).then(()=>{
+                    document.location.href="/";
+                })
             } else {
                 this.addMessageDom(`
                     <div class="wrapper-message">

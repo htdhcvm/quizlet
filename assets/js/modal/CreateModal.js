@@ -5,23 +5,30 @@ const CreateModal = () => {
 
     let modalController = new MC();
 
+    let reg, auth;
+
 
     return {
         createReg(title){
-            let Registr = Reg(title);
-            const registration = new Registr();
+            if(!reg) {
+                let Registr = Reg(title);
+                reg = new Registr();
+                modalController.pushCollection(reg)
+                return reg;
 
-            modalController.pushCollection(registration)
-            return registration;
+            }
+            return reg;
         },
 
         createAuth(title) {
-            let Autho = Auth(title);
-            const authorization = new Autho();
+            if(!auth) {
+                let Autho = Auth(title);
+                auth = new Autho();
+                modalController.pushCollection(auth)
+                return auth;
 
-
-            modalController.pushCollection(authorization)
-            return authorization;
+            }
+            return auth;
         },
 
         ModalController : modalController

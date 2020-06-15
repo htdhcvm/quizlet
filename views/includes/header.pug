@@ -1,4 +1,7 @@
 div(class="header")
     h1 Quizlet
-    a(id="linkEnterReg" data-type="enter") Войти / Регистрация
+    if dataHead.data
+        a=dataHead.data.login
+    else 
+        a(id="linkEnterReg" data-type="enter") Войти / Регистрация
 

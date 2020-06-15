@@ -40,8 +40,6 @@ const Auth = (title) => {
         this.authorization = () => {
             this.fillDOM(this.DOMLinks.auth);
 
-            console.log(this.DOMLinks.auth);
-
             fetch("/authorization", {
                 method : "POST",
                 headers : {
