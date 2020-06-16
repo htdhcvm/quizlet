@@ -1,7 +1,7 @@
 const express = require("express");
-const path = require("path");
 const bodyParser = require("body-parser");
 const session = require('express-session');
+const path = require("path");
 
 const router = require("./routes");
 
@@ -16,9 +16,6 @@ app.use("/img", express.static("assets/img"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-const bcryptSalt = 10;
-
-
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
@@ -28,11 +25,7 @@ app.use(session({
     }
 }))
 
-
 app.use('/', router);
-
-
-
 
 app.listen(3000, () => {
     console.log(`Server was started on 3000 port`);

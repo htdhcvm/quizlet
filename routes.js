@@ -3,50 +3,38 @@ const express = require("express");
 const User = require("./modal/User/User");
 const bcrypt = require("bcrypt");
 
-
-
 const router = express.Router();
 
+const bcryptSalt = 10;
 
 router.use("/", (req, res, next) => {
-    console.log("/")
+    if ( req.url === "/" ) {
+        if( req.session.user ) {
+            console.log(req.session.user);
+            console.log("tut 1")
+            res.render("main", {
+                dataHead : {
+                    title : "Flouheforst | Quizlet ",
+                    src : "/css/main.css",
+                    js : [
+                        "regAuth/Authorization.js",
+                        "regAuth/Registration.js",
+                        "modal/ModalControl.js",
+                        "modal/Auth.js",
+                        "modal/Reg.js",
+                        "modal/CreateModal.js",
+                        "Combined.js"
+                    ],
+                    data : req.session.user
+                }
+            })
+        } else {
+            next();
+        }
+    } else {
+        next();
+    }
 })
-
-
-router.use("/qwe", (req, res, next) => {
-    console.log("qwe")
-})
-
-
-router.use("/ewq", (req, res, next) => {
-    console.log("ewq")
-    
-})
-// router.use("/", (req, res, next) => {
-//     if( req.session.user ) {
-//         console.log(req.session.user);
-//         console.log("tut 1")
-//         res.render("main", {
-//             dataHead : {
-//                 title : "Flouheforst | Quizlet ",
-//                 src : "/css/main.css",
-//                 js : [
-//                     "regAuth/Authorization.js",
-//                     "regAuth/Registration.js",
-//                     "modal/ModalControl.js",
-//                     "modal/Auth.js",
-//                     "modal/Reg.js",
-//                     "modal/CreateModal.js",
-//                     "Combined.js"
-//                 ],
-//                 data : req.session.user
-//             }
-//         })
-//         next();
-//     } else {
-//         next();
-//     }
-// })
 
 router.get("/", (req, res) => {
     res.render("main", {
@@ -76,9 +64,11 @@ router.post("/registration", (req, res) => {
         })
     }).then(
         (hash)=>{
+            console.log(hash);
             return hash;
         },
         (err) => {
+            console.log(err);
             res.send({
                 text : "Что-то не так",
                 status : false
@@ -112,11 +102,13 @@ router.post("/authorization", (req, res) => {
     let { login, password } = req.body.values;
 
     console.log(login);
+    console.log(password);
     User.getOnLogin(login)
         .then(
             ( users ) => {
                 users.forEach( item => {
-                    bcrypt.compare(password, item.Password, function(err, result) {
+                    console.log(item)
+                    bcrypt.compare(password, item.password, function(err, result) {
                         if (err) console.log(err);
                         if ( result ) {
                             req.session.user = {
@@ -141,28 +133,40 @@ router.post("/authorization", (req, res) => {
 
 router.use("/modules", (req, res, next) => {
     if( req.session.user ) {
-        console.log(req.session.user);
-        console.log("tut 2")
-        res.render("modules", {
-            dataHead : {
-                title : `${req.session.user.login} | Quizlet `,
-                src : "/css/modules.css",
-                js : [],
-                data : req.session.user
-            }
-        })
-    } else {
         next();
+    } else {
+        res.redirect("/");
     }
 })
 
 router.get("/modules", (req, res) => {
-    res.send("M")
+    res.render("modules", {
+        dataHead : {
+            title : `${req.session.user.login} | Quizlet `,
+            src : "/css/modules.css",
+            js : [],
+            data : req.session.user
+        }
+    })
 });
+
+router.use("/modules", (req, res, next) => {
+    if( req.session.user ) {
+        next();
+    } else {
+        res.redirect("/")
+    }
+})
 
 router.get("/modules/create", (req, res) => {
-
+    res.render("modules_create", {
+        dataHead : {
+            title : `${req.session.user.login} | Quizlet `,
+            src : "/css/modules_create.css",
+            js : ["modules/modul.js"],
+            data : req.session.user
+        }
+    })
 });
-
 
 module.exports = router;

@@ -5,8 +5,5 @@ let Module = () => {
         this.description = description;
         this.photo = photo;
     }
-
-
 }
-
 

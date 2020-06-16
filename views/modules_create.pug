@@ -1,0 +1,40 @@
+include mixin/head
+include mixin/footer
+
+
+<!DOCTYPE html>
+html(lang="en")
+    head
+        +head(dataHead)        
+    body    
+        div(class="wrapper-main")
+            
+            nav(class="haed")
+                include includes/header.pug
+            
+                div(class="content")
+                    div(class="head")
+                        h2 Создать новый учебный модуль
+                        div(class="fields")
+                            div(class="form-group")
+                                input(type="text" placeholder="Введите название, например, Биология. Фотосинтез и хемосинтез")
+                            div(class="form-group")
+                                input(type="text" placeholder="Добавьте описание")
+                    div(class="list_modules")
+                        div(class="item")
+                            span(class="number") 1 
+                            div(class="body")
+                                div(class="form-group")
+                                    input(type="text" placeholder="Термин")
+                                div(class="form-group")
+                                    input(type="text" placeholder="Определение")
+                            div(class="form-group")
+                                input(type="file")
+
+                    div(class="count_modules")
+                        input(type="number" value="1")
+                        button Добавить карточку
+
+            div(id="wrapper-modal")
+
+        +footer(dataHead.js)

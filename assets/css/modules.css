@@ -1,0 +1,80 @@
+html {
+    height:100%;
+}
+
+body {
+    height:100%;
+    padding: 0px;
+    margin: 0px;
+    font-family: Ubuntu;
+    background-color: #f4f4f4;
+}
+
+ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+li {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+.haed {
+    grid-area: head;
+}
+
+.menu {
+    grid-area: menu;
+    background-color: white;
+    box-shadow: 0 0.25rem 1.25rem rgba(0,0,0,.08);
+    width: 17rem;
+    justify-self: end;
+}
+
+.menu ul li a {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+    font-size: .875rem;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    cursor: pointer;
+}
+
+.menu ul li a:hover{
+    background-color: #ffcd20;
+}
+
+.content {
+    grid-area: content;
+}
+
+.wrapper-main {
+    height:100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 68px 1fr;
+    grid-template-areas: 
+        "head head head"
+        "menu content content";
+}
+
+.header {
+    padding: 0 10% 0 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4256b1;
+}
+
+.header  h1 {
+    color: white;
+}
+
+.header a {
+    color: white;
+    cursor: pointer;
+}
