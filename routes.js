@@ -8,6 +8,7 @@ const router = express.Router();
 const bcryptSalt = 10;
 
 router.use("/", (req, res, next) => {
+    console.log(req.session.user)
     if ( req.url === "/" ) {
         if( req.session.user ) {
             console.log(req.session.user);
@@ -163,7 +164,7 @@ router.get("/modules/create", (req, res) => {
         dataHead : {
             title : `${req.session.user.login} | Quizlet `,
             src : "/css/modules_create.css",
-            js : ["modules/modul.js"],
+            js : ["modules/Modul.js", "modules/Controller.js"],
             data : req.session.user
         }
     })

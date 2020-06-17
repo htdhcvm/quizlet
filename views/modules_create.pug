@@ -21,19 +21,21 @@ html(lang="en")
                             div(class="form-group")
                                 input(type="text" placeholder="Добавьте описание")
                     div(class="list_modules")
-                        div(class="item")
-                            span(class="number") 1 
-                            div(class="body")
-                                div(class="form-group")
-                                    input(type="text" placeholder="Термин")
-                                div(class="form-group")
-                                    input(type="text" placeholder="Определение")
-                            div(class="form-group")
-                                input(type="file")
+                        //- div(class="item")
+                            //- span(class="number") 1 
+                            //- div(class="body")
+                            //-     div(class="form-group")
+                            //-         input(type="text" placeholder="Термин")
+                            //-     div(class="form-group")
+                            //-         input(type="text" placeholder="Определение")
+                            //- div(class="form-group")
+                            //-     input(type="file")
 
                     div(class="count_modules")
-                        input(type="number" value="1")
-                        button Добавить карточку
+                        input( id="count_modules" type="number" value="1")
+                        button(id="add_modules") Добавить карточку
+                        div 
+                            button(class="create" id="create") Создать
 
             div(id="wrapper-modal")
 
